@@ -4,17 +4,15 @@ services:
     env: php
     plan: free
     buildCommand: |
-      # Install Composer for PHP dependencies
+      # Install Composer
       wget https://getcomposer.org/installer -O composer-installer.php && \
       php composer-installer.php --install-dir=/usr/local/bin --filename=composer && \
       rm composer-installer.php && \
-      composer install && \
-      npm install
+      # Install PHP dependencies
+      composer install
     startCommand: |
-      # Start the Laravel server
-      php artisan serve --host=0.0.0.0 --port=8000 & \
-      # Start the front-end (if using Vue or another JS framework)
-      npm run dev  # 
+      # Start Laravel server
+      php artisan serve --host=0.0.0.0 --port=8000
     envVars:
       - key: APP_ENV
         value: production
