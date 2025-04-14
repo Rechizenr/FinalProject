@@ -7,7 +7,7 @@ cmds = [
   "php artisan optimize:clear",
   "php artisan storage:link",
   "php artisan session:table",
-  "php artisan migrate --force"
+  "php artisan migrate"
 ]
 
 [start]
