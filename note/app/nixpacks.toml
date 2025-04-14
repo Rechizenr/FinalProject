@@ -3,12 +3,14 @@ nixPkgs = ["php", "composer", "mysql", "nodejs"]
 
 [phases.build]
 cmds = [
-  "composer install",
-  "php artisan optimize:clear",
-  "php artisan storage:link",
-  "php artisan session:table",
-  "php artisan migrate"
+  "composer install"
+  "npm install"
+"php artisan key:generate"
+"php artisan migrate --force"
+"php artisan config:cache"
+"php artisan route:cache"
+
 ]
 
 [start]
-cmd = "php artisan serve --host=0.0.0.0 --port=8000"
+cmd = "php artisan serve --host=0.0.0.0 --port=8000", "npm run dev"
