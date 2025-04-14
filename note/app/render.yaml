@@ -6,7 +6,7 @@ services:
     buildCommand: |
       # Install Composer
       wget https://getcomposer.org/installer -O composer-installer.php && \
-      php composer-installer.php --install-dir=/usr/local/bin --filename=composer && \
+      php composer-installer.php --install-dir=/usr/local/bin --note=composer && \
       rm composer-installer.php && \
       # Install PHP dependencies
       composer install
