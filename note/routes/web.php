@@ -18,5 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('notes', NoteController::class);
 });
+Route::get('/check-db', function () {
+    return DB::select("SELECT DATABASE() AS name");
+});
 
 require __DIR__.'/auth.php';
