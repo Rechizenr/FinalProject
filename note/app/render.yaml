@@ -1,16 +1,30 @@
 services:
   - type: web
-    name: laravel-app
+    name: note-laravel
     env: php
+    plan: free
     buildCommand: |
-      composer install --no-dev --optimize-autoloader
+      yarn
     startCommand: |
-      php artisan serve --host=0.0.0.0 --port=10000
+      composer install, npm install, npm run dev, php artisan serve
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_KEY
         sync: false
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://note-laravel.onrender.com
       - key: DB_CONNECTION
         value: mysql
-      # add any other env variables here
+      - key: DB_HOST
+        value: phpMyAdmin
+      - key: DB_PORT
+        value: 3306
+      - key: DB_DATABASE
+        value: note_db
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        value: 
