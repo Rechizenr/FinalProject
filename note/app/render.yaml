@@ -4,20 +4,18 @@ services:
     env: php
     plan: free
     buildCommand: |
-      # Install Composer first using wget
+      # Install Composer for PHP dependencies
       wget https://getcomposer.org/installer -O composer-installer.php && \
       php composer-installer.php --install-dir=/usr/local/bin --filename=composer && \
-      # Clean up the installer
       rm composer-installer.php && \
-      # Install PHP dependencies
-      composer install && \
-      # Install Node.js dependencies
-      yarn
+      composer install  # Install PHP dependencies
+      # Install Node.js dependencies (if you are using a front-end framework)
+      yarn install
     startCommand: |
       # Start Laravel server
       php artisan serve --host=0.0.0.0 --port=8000 & \
-      # Start the frontend (assuming it's a Node.js app like React, Vue, etc.)
-      npm run dev
+      # Start the front-end
+      npm run dev  # Or `yarn run dev` if you're using Yarn
     envVars:
       - key: APP_ENV
         value: production
@@ -30,7 +28,7 @@ services:
       - key: DB_CONNECTION
         value: mysql
       - key: DB_HOST
-        value: phpMyAdmin
+        value: phpMyAdmin  # Change if needed
       - key: DB_PORT
         value: 3306
       - key: DB_DATABASE
