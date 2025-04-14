@@ -8,14 +8,13 @@ services:
       wget https://getcomposer.org/installer -O composer-installer.php && \
       php composer-installer.php --install-dir=/usr/local/bin --filename=composer && \
       rm composer-installer.php && \
-      composer install  # Install PHP dependencies
-      # Install Node.js dependencies (if you are using a front-end framework)
-      yarn install
+      composer install && \
+      npm install
     startCommand: |
-      # Start Laravel server
+      # Start the Laravel server
       php artisan serve --host=0.0.0.0 --port=8000 & \
-      # Start the front-end
-      npm run dev  # Or `yarn run dev` if you're using Yarn
+      # Start the front-end (if using Vue or another JS framework)
+      npm run dev  # 
     envVars:
       - key: APP_ENV
         value: production
